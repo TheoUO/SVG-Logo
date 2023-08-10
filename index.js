@@ -70,18 +70,15 @@ async function init() {
     // Prompt the user for answers
     const answers = await inquirer.prompt(questions);
 
-	//user text
+	//user should enter only 1-3 characters
 	var user_text = "";
 	if (answers.text.length > 0 && answers.text.length < 4) {
-		// 1-3 chars, valid entry
+		
 		user_text = answers.text;
 	} else {
-		// 0 or 4+ chars, invalid entry
 		console.log("Please ONLY enter 1-3 Characters!");
         return;
 	}
-
-	user_text = answers["text"];
 	console.log("User text: [" + user_text + "]");
 	//user font color
 	user_font_color = answers["text-color"];
@@ -93,7 +90,7 @@ async function init() {
 	user_shape_type = answers["shape"];
 	console.log("User entered shape = [" + user_shape_type + "]");
 	
-	//user shape
+	//The shape of the logo
 	let user_shape;
 	if (user_shape_type === "Square" || user_shape_type === "square") {
 		user_shape = new Square();
@@ -118,9 +115,7 @@ async function init() {
 	svg.setShapeElement(user_shape);
 	svgString = svg.render();
 	
-	//Print shape to log
 	console.log("Displaying shape:\n\n" + svgString);
-	//document.getElementById("svg_image").innerHTML = svgString;
 
 	console.log("Shape generation complete!");
 	console.log("Writing shape to file...");
